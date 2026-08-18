@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Now-N Test</title>
+        <link rel="stylesheet" href="noun.css">
+        
+       <script type="module">
+  // 1. Import Firebase App AND Firestore SDKs (using version 10/11 stable CDN paths)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCSJsYWiGSwXske6pKup7j2N9zQ80maF5U",
+    authDomain: "english-game-5e893.firebaseapp.com",
+    projectId: "english-game-5e893",
+    storageBucket: "english-game-5e893.firebasestorage.app",
+    messagingSenderId: "861726724031",
+    appId: "1:861726724031:web:505a82f29dfb2e88835b0a",
+    measurementId: "G-14S8LPY5E4"
+  };
+
+  // 2. Initialize Firebase & Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app); // Initialize Firestore instance
+
+  // 3. Global function for nouner.js to send session payload
+  window.saveToFirestore = async function(sessionData) {
+    try {
+      // Passes 'db', the collection name, and the matching 'sessionData' argument
+      const docRef = await addDoc(collection(db, "game_sessions"), sessionData);
+      console.log("Document successfully written to Firestore with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document to Firestore: ", e);
+    }
+  };
+</script>
+        
+    </head>
+    <body>
+
+        <div class="holder">
+            <div class="starter over">
+                <h2>Click Start to Begin</h2>
+                <button class="startbutton">Start</button>
+            </div>
+            
+            <div class="level locked">
+                <div class="tbox">
+                    <h2>Find All Nouns</h2>
+                    <b>Click on nouns to reveal them.</b>
+                    <p class="text"></p>
+                </div>
+
+                <div class="feedbox"> 
+                    <span class="numInput"></span>
+                </div>
+            </div>
+            <div class="level over">
+                <div class="tbox">
+                    <h2 class="text">Task Complete! </h2>
+                    <p class="score"></p>
+                </div>
+            </div>
+            
+        </div>
+        
+<script src="GSAP/gsap-public/minified/gsap.min.js"></script>
+<script src="GSAP/gsap-public/minified/SplitText.min.js"></script>
+<script src="GSAP/gsap-public/minified/CustomWiggle.min.js"></script>
+
+<script src="nouner.js"></script>
+        
+    </body>
+</html>
