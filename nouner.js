@@ -1,4 +1,4 @@
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText,CustomEase,CustomWiggle);
 
 // =========================================================================
 // 0. GAME DATA CONTAINER (With Tiers & Weights)
